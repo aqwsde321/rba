@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>cal</title>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="./cal.css">
+</head>
+
+<body>
+   <div class="top-button-container">
+      <button class="top-button" id="dataCopyButton">data copy</button>
+      <button class="top-button" id="settingButton">setting</button>
+      <button class="top-button" id="dataInsertButton">data insert</button>
+   </div>
+
+   <div id="calendar"></div>
+
+   <div id="settingModal" class="modal">
+      <div class="modal-box">
+         <h2>Setting</h2>
+         <form>
+            <div class="input-box">
+               <input type="text" name="" required="" id="nickName" maxlength="2">
+               <label>닉네임<span class="input-label-span"> (한글 2글자)</span></label>
+            </div>
+            <div class="input-box">
+               <input type="text" value="11000" name="" required="" id="timeMoney">
+               <label>시급<span class="input-label-span"> (숫자만)</span></label>
+            </div>
+            <div class="toggle-label">
+               <label for="toggle" class="toggleSwitch active" id="nigthTime">
+                  <span class="toggleButton"></span>
+               </label>
+               <span class="label-text" id="nigthTimeText">야간수당</span>
+            </div>
+            <div class="input-box" id="nigthTimeBox1">
+               <input type="text" value="12000" name="" required="" id="nigthTimeMoney">
+               <label>야간시급<span class="input-label-span"> (숫자만)</span></label>
+            </div>
+            <div class="input-box" id="nigthTimeBox2">
+               <input type="text" value="23:00" name="" required="" id="nigthTimeStart" maxlength="5">
+               <label>야간수당 지급 시간 기준<span class="input-label-span"> (숫자만)</span></label>
+            </div>
+            <div class="toggle-label">
+               <label for="toggle" class="toggleSwitch blue active" id="bonusTime">
+                  <span class="toggleButton"></span>
+               </label>
+               <span class="label-text" id="bonusTimeText">주휴수당</span>
+            </div>
+            <div style="display: grid;  place-items: center;">
+               <a href="#" id="submitButton">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  START
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+
+   <div id="dataInsertModal" class="modal">
+      <div class="modal-box">
+
+         <form>
+            <div class="toggle-label">
+               <label for="toggle" class="toggleSwitch blue active" id="clearData">
+                  <span class="toggleButton"></span>
+               </label>
+               <span class="label-text" id="clearDataText">기존 데이터를 삭제 후 Insert</span>
+            </div>
+            <div class="input-box">
+               <input type="text" name="" required="" id="dataInsertInput">
+               <label>input data<span class="input-label-span"> ("clear" 입력시 데이터 초기화)</span></label>
+            </div>
+            <div style="display: grid;  place-items: center;">
+               <a href="#" id="InsertButton">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Insert
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+
+   <script src="./code.jquery.com_jquery-3.6.0.min.js"></script>
+   <script src="./moment.min.js"></script>
+   <script src="./modal.js"></script>
+   <script src="./cal_f.js"></script>
+   <script src="./cal.js"></script>
+</body>
+
+
+<!--
+Copyright (c) 2023 by Paul Navasard (https://codepen.io/peanav/pen/DmZEEp)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Copyright (c) 2023 by Pablo R García (https://codepen.io/pablorgarcia/pen/ARdVgx)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Copyright (c) 2023 by rq q (https://codepen.io/rq-q/pen/QWzjJwO)
+Fork of an original work Candy Color Button Animation (https://codepen.io/yuhomyan/pen/OJMejWJ
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Copyright (c) 2023 by Soufiane Khalfaoui HaSsani (https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+   -->
+
+
+</html>
