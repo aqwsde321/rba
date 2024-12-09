@@ -34,11 +34,11 @@ let isclearData = true;
 
 function setTotalDate(nickName) {
     //if (!nickName) nickName = getLocalStorage(inputIds[0]);
-    console.log(nickName);
+    //console.log(nickName);
     Object.keys(window.localStorage).forEach(function (k) {
         if (isDateValid(k, nickName)) {
             totalData[k.replace(nickName, '')] = getLocalStorage(k);
-            console.log(totalData)
+            //console.log(totalData)
         } else if (inputIds.includes(k)) {
             //totalData[k] = getLocalStorage(k);
         } else {
@@ -247,7 +247,7 @@ function tableDel() {
 }
 
 function makeTable(currentYear) {
-    console.log(currentYear);
+    //console.log(currentYear);
     var table = createElement('table', 'container');
     table.innerHTML = '';
     var tableBody = createElement('tbody');
@@ -301,7 +301,7 @@ function makeTable(currentYear) {
 
     for (var week in groupedData) {
         var weekDayList = groupedData[week];
-        console.log(weekDayList, week);
+        //console.log(weekDayList, week);
         weekDayList.sort(function (a, b) {
             return new Date(a) - new Date(b);
         });
@@ -346,7 +346,7 @@ function setCurrnetMonthData() {
 function makeWeekGroup(data, currentYear) {
     var groupedData = {};
 
-    console.log(currentYear)
+    //console.log(currentYear)
     Object.keys(data).forEach(function (day) {
         var item = data[day];
         var year = new Date(day).getFullYear(); // day로부터 연도 추출
@@ -457,7 +457,7 @@ function calMoney(data, tableBody) {
 }
 
 function setWorkingTime(item) {
-    console.log(item);
+    //console.log(item);
     var startParts = item.startTime.split(':');
     var endParts = item.endTime.split(':');
 

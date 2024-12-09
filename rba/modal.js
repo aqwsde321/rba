@@ -60,7 +60,7 @@ function handleSubmit() {
 
     // 각 input 요소의 값을 로컬 스토리지에 저장하면서 유효성 검사
     inputIds.forEach((id) => {
-        console.log(id);
+        //console.log(id);
         const inputElement = document.getElementById(id);
         const labelElement = inputElement.nextElementSibling;
         const value = inputElement.value.trim();

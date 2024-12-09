@@ -350,7 +350,7 @@
     var btn = createElement('span', 'calTable-btn');
     var calTable = createElement('span', 'calTable');
     var currentYear = this.current.year();
-    console.log(currentYear);
+    //console.log(currentYear);
     btn.addEventListener('click', function () {
       if (clickCount) {
         calTable.innerHTML = '';
