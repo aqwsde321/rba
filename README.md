@@ -1,3 +1,9 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Faqwsde321%2Frba&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 https://rbatimetomoney.netlify.app/
+
+## 화면
+
+| ![1](pic/1.png) | ![2](pic/2.png) | ![3](pic/3.jpg) |
+|------------------|-----------------|-----------------|
+
