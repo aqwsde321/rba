@@ -174,7 +174,6 @@
   Calendar.prototype.drawEvents = function (day, element) {
 
     var targetEvent = totalData[day.format('YYYY-MM-DD')];
-
     if (targetEvent) {
       var evSpan = createElement('span', getRandomColorClass());
       element.appendChild(evSpan);
@@ -296,7 +295,7 @@
           if (totalData.hasOwnProperty(day)) {
             delete totalData[day]; // 해당 키를 삭제합니다.
             tableDel();
-            window.localStorage.removeItem(day);
+            window.localStorage.removeItem(nickName + day);
           }
         } else if (totalData[day].startTime != startTime || totalData[day].endTime != endTime) {
           if (startTime.length == 5 && endTime.length == 5) {

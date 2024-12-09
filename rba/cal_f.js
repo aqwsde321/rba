@@ -15,16 +15,6 @@ let isclearData = true;
 
 !function () {
 
-    Object.keys(window.localStorage).forEach(function (k) {
-        if (isDateValid(k)) {
-            totalData[k] = getLocalStorage(k);
-        } else if (inputIds.includes(k)) {
-            //totalData[k] = getLocalStorage(k);
-        } else {
-            window.localStorage.removeItem(k);
-        }
-    });
-
     openModal();
 
     addEventTopButtons();
@@ -41,6 +31,22 @@ let isclearData = true;
   */
 
 }();
+
+function setTotalDate(nickName) {
+    //if (!nickName) nickName = getLocalStorage(inputIds[0]);
+    console.log(nickName);
+    Object.keys(window.localStorage).forEach(function (k) {
+        if (isDateValid(k, nickName)) {
+            totalData[k.replace(nickName, '')] = getLocalStorage(k);
+            console.log(totalData)
+        } else if (inputIds.includes(k)) {
+            //totalData[k] = getLocalStorage(k);
+        } else {
+            //window.localStorage.removeItem(k);
+        }
+    });
+
+}
 
 function setTimeInput(input, name) {
     const test = document.createElement("input");
@@ -66,8 +72,33 @@ function setTimeInput(input, name) {
 
 }
 
-function isDateValid(dateString) {
-    const dateObject = new Date(dateString);
+
+// function getDate(dateString) {
+//     // nickName + "yyyy-mm-dd" 형식으로 정규 표현식 생성
+//     const regex = new RegExp(`^${nickName}\\d{4}-\\d{2}-\\d{2}$`);
+
+//     // 형식 검사
+//     if (!regex.test(dateString)) {
+//         return false; // 형식이 맞지 않으면 false 반환
+//     }
+
+//     // Date 객체로 변환하고 유효성 체크
+//     const dateObject = new Date(dateString.replace(nickName, '')); // nickName을 제거한 후 날짜만 파싱
+//     return dateObject;
+// }
+
+
+function isDateValid(dateString, nickName) {
+    // nickName + "yyyy-mm-dd" 형식으로 정규 표현식 생성
+    const regex = new RegExp(`^${nickName}\\d{4}-\\d{2}-\\d{2}$`);
+
+    // 형식 검사
+    if (!regex.test(dateString)) {
+        return false; // 형식이 맞지 않으면 false 반환
+    }
+
+    // Date 객체로 변환하고 유효성 체크
+    const dateObject = new Date(dateString.replace(nickName, '')); // nickName을 제거한 후 날짜만 파싱
     return !isNaN(dateObject.getTime());
 }
 
@@ -191,13 +222,19 @@ function isKeyValueObject(data) {
 }
 
 function setLocalStorage(k, v) {
-    window.localStorage.setItem(k, JSON.stringify(v));
+    window.localStorage.setItem(nickName + k, JSON.stringify(v));
 }
 
 function getLocalStorage(k) {
-    return JSON.parse(window.localStorage.getItem(k));
+    try {
+        const value = window.localStorage.getItem(k);
+        return JSON.parse(value);
+    } catch (e) {
+        console.error("Error parsing localStorage item:", e); // 에러를 콘솔에 출력
+        //window.localStorage.removeItem(k);
+        return null;  // 에러가 발생하면 null 반환
+    }
 }
-
 function tableDel() {
     clickCount = true;
     var legend = document.querySelector('.legend');
