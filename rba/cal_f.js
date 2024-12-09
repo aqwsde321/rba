@@ -209,8 +209,8 @@ function tableDel() {
     }
 }
 
-function makeTable() {
-
+function makeTable(currentYear) {
+    console.log(currentYear);
     var table = createElement('table', 'container');
     table.innerHTML = '';
     var tableBody = createElement('tbody');
@@ -260,12 +260,11 @@ function makeTable() {
     table.appendChild(thead);
 
     var money = 0;
-
-    var groupedData = makeWeekGroup(totalData); //setCurrnetMonthData()
+    var groupedData = makeWeekGroup(totalData, currentYear); //setCurrnetMonthData()
 
     for (var week in groupedData) {
         var weekDayList = groupedData[week];
-
+        console.log(weekDayList, week);
         weekDayList.sort(function (a, b) {
             return new Date(a) - new Date(b);
         });
@@ -286,7 +285,7 @@ function makeTable() {
     calMonneyCell.style.color = '#ffffff';
     calMonneyCell.style.textAlign = 'right';
     calMonneyCell.colSpan = 3;
-    calMonneyCell.textContent = numberWithCommas(toFixedDecimals(money,0));
+    calMonneyCell.textContent = numberWithCommas(toFixedDecimals(money, 0));
     row.appendChild(calMonneyCell);
 
     tableBody.appendChild(row);
@@ -307,11 +306,19 @@ function setCurrnetMonthData() {
     return filteredData;
 }
 
-function makeWeekGroup(data) {
+function makeWeekGroup(data, currentYear) {
     var groupedData = {};
 
+    console.log(currentYear)
     Object.keys(data).forEach(function (day) {
         var item = data[day];
+        var year = new Date(day).getFullYear(); // day로부터 연도 추출
+        // 올해 값이 아니면 groupedData에 추가하지 않음
+        if (year !== currentYear) {
+            return; // 루프는 계속 진행
+        }
+
+        // 주차 배열에 포함된 주차만 처리
         if (monthWeekArray.includes(item.week)) {
             if (!groupedData[item.week]) {
                 groupedData[item.week] = [];
@@ -389,22 +396,22 @@ function calMoney(data, tableBody) {
     calculationCell.style.color = 'rgb(219 14 211)';
     calculationCell.textContent = totalEarningsCalculation;
     calculationCell.colSpan = 4; // rowspan 속성을 설정하여 행 병합
-/*
-    const maxTextLength = 32;
-    const currentTextLength = totalEarningsCalculation.length;
-
-    // 만약 현재 너비가 최대 너비를 초과하면 글자 크기를 줄임
-    if (currentTextLength > maxTextLength) {
-        let fontSize = 16 - (currentTextLength - maxTextLength);
-        if(fontSize < 10) fontSize = 10;
-        calculationCell.style.fontSize = `${fontSize}px`; // 스타일 변경
-    }
-*/
+    /*
+        const maxTextLength = 32;
+        const currentTextLength = totalEarningsCalculation.length;
+    
+        // 만약 현재 너비가 최대 너비를 초과하면 글자 크기를 줄임
+        if (currentTextLength > maxTextLength) {
+            let fontSize = 16 - (currentTextLength - maxTextLength);
+            if(fontSize < 10) fontSize = 10;
+            calculationCell.style.fontSize = `${fontSize}px`; // 스타일 변경
+        }
+    */
     row.appendChild(calculationCell);
 
     var calMonneyCell = createElement('td', 'calMonneyCell');
     calMonneyCell.style.color = 'rgb(219 14 211)';
-    calMonneyCell.textContent = numberWithCommas(toFixedDecimals(totalEarnings,0));
+    calMonneyCell.textContent = numberWithCommas(toFixedDecimals(totalEarnings, 0));
     row.appendChild(calMonneyCell);
 
     tableBody.appendChild(row);
@@ -413,7 +420,7 @@ function calMoney(data, tableBody) {
 }
 
 function setWorkingTime(item) {
-
+    console.log(item);
     var startParts = item.startTime.split(':');
     var endParts = item.endTime.split(':');
 
@@ -497,15 +504,24 @@ function toFixedDecimals(number, place) {
 
 function createNumberArray(start, end) {
     var numberArray = [];
-    for (var i = start; i <= end; i++) {
-        numberArray.push(i);
+
+    if (start < end) {
+        for (var i = start; i <= end; i++) {
+            numberArray.push(i);
+        }
+    } else if (start > end) {
+        for (var i = start; i <= 52; i++) { // 현재 해의 남은 숫자 추가
+            numberArray.push(i);
+        }
+        numberArray.push(end);
     }
+
     return numberArray;
 }
 
 function setCurrnetMonthWeekArray(firstDay) {
     var startWeek = firstDay.week();
-    var endWeek = firstDay.endOf('month').week();
+    var endWeek = firstDay.endOf('month').week(); // 12월 마지막주가 1주차인 경우있음.
     monthWeekArray = createNumberArray(startWeek, endWeek);
 }
 

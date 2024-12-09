@@ -350,11 +350,12 @@
     var legend = createElement('div', 'legend');
     var btn = createElement('span', 'calTable-btn');
     var calTable = createElement('span', 'calTable');
-
+    var currentYear = this.current.year();
+    console.log(currentYear);
     btn.addEventListener('click', function () {
       if (clickCount) {
         calTable.innerHTML = '';
-        calTable.appendChild(makeTable());
+        calTable.appendChild(makeTable(currentYear));
         legend.appendChild(calTable);
         clickCount = false;
       } else {
